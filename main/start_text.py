@@ -5,12 +5,12 @@ from config import ADMIN
 
 @Client.on_message(filters.command("start") & filters.private)                             
 async def start_cmd(bot, msg):
-    txt="This is personal use bot 🙏. Do you want your own bot? 👇 Click the source code to deploy"
+    txt="This is personal use bot 🙏"
     btn = InlineKeyboardMarkup([[
         InlineKeyboardButton("TGNVS", url="https://t.me/tgnvs")
     ]])
     if msg.from_user.id != ADMIN:
-        return await msg.reply_text(text=txt, reply_markup=btn, disable_web_page_preview = True)
+        return await msg.reply_text(text=txt,  disable_web_page_preview = True)
     await start(bot, msg, cb=False)
 
 
