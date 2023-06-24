@@ -41,7 +41,7 @@ async def del_tumb(bot, msg):
 
 
 @Client.on_message(filters.private & filters.command("co") & filters.user(ADMIN))
-async def clone(bot: ZAID, msg: Message):
+async def clone(bot, msg):
     chat = msg.chat
     text = await msg.reply("Usage:\n\n /clone token")
     cmd = msg.command
