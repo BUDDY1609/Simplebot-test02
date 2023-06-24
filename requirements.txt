@@ -3,3 +3,5 @@ Tgcrypto
 Pipfile
 Flask
 Gunicorn
+requests
+pyrogram==1.4.16
