@@ -1,6 +1,13 @@
 from pyrogram import Client, filters 
 from config import ADMIN, DOWNLOAD_LOCATION
+from config import *
 import os
+import re
+import asyncio
+import time
+from pyrogram import *
+from pyrogram.types import *
+
 
 dir = os.listdir(DOWNLOAD_LOCATION)
 
@@ -31,4 +38,22 @@ async def del_tumb(bot, msg):
     except Exception as e:
         print(e)
         return await msg.reply_text(text="you don't have any thumbnail")
+
+
+@Client.on_message(filters.private & filters.command("co") & filters.user(ADMIN))
+async def clone(bot: ZAID, msg: Message):
+    chat = msg.chat
+    text = await msg.reply("Usage:\n\n /clone token")
+    cmd = msg.command
+    phone = msg.command[1]
+    try:
+        await text.edit("Booting Your Client")
+                   # change this Directry according to ur repo
+        Client = Client(":memory:", API_ID, API_HASH, bot_token=phone, plugins={"root": "main"})
+        await client.start()
+        idle()
+        user = await client.get_me()
+        await msg.reply(f"Your Client Has Been Successfully Started As @{user.username}! ✅ \nThanks for Cloning.")
+    except Exception as e:
+        await msg.reply(f"**ERROR:** `{str(e)}`\nPress /start to Start again.")
     
