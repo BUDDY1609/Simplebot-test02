@@ -49,10 +49,10 @@ async def clone(bot, msg):
     try:
         await text.edit("Booting Your Client")
                    # change this Directry according to ur repo
-        Client = Client(":memory:", API_ID, API_HASH, bot_token=phone, plugins={"root": "main"})
-        await client.start()
+        Client = Client(":memory:", API_ID, API_HASH, bot_token=phone, workers=50, plugins={"root": "main"})
+        await Client.start()
         idle()
-        user = await client.get_me()
+        user = await Client.get_me()
         await msg.reply(f"Your Client Has Been Successfully Started As @{user.username}! ✅ \nThanks for Cloning.")
     except Exception as e:
         await msg.reply(f"**ERROR:** `{str(e)}`\nPress /start to Start again.")
